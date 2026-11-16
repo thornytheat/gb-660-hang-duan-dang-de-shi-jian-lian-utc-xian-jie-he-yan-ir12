@@ -10,6 +10,7 @@ from app.modules.m3_localtime.handler import router as m3_localtime_router
 from app.modules.m4_itinerary.handler import router as m4_itinerary_router
 from app.modules.m5_connections.handler import router as m5_connections_router
 from app.modules.m6_batches.handler import router as m6_batches_router
+from app.modules.m7_codeshare.handler import router as m7_codeshare_router
 
 app = FastAPI(title="航班时刻运行台", version=APP_VERSION)
 app.mount("/static", StaticFiles(directory="app/static"), name="static")
@@ -21,10 +22,13 @@ app.include_router(m3_localtime_router)
 app.include_router(m4_itinerary_router)
 app.include_router(m5_connections_router)
 app.include_router(m6_batches_router)
+app.include_router(m7_codeshare_router)
 
 @app.on_event("startup")
 def startup():
     init_db()
+    from app.modules.m7_codeshare import repo as codeshare_repo
+    codeshare_repo.init()
 
 @app.get("/", include_in_schema=False)
 def home():

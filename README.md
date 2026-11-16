@@ -16,6 +16,7 @@ docker compose up --build
 - M4 UTC 航链：页面 /itineraries，接口 /api/itineraries/build
 - M5 衔接判定：页面 /connections，接口 /api/connections/check
 - M6 批次导出：页面 /batches，接口 /api/reconcile
+- M7 共享航班：页面 /codeshare，接口 /api/codeshare/import、/api/codeshare/groups、/api/codeshare/groups/{id}/adjudicate、/api/codeshare/groups/{id}/compensate、/api/codeshare/chains、/api/codeshare/batches/{id}
 
 ## 运行规则
 

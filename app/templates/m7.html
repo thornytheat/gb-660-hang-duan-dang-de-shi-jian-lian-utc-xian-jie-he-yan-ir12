@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="kpis">
+  <div class="kpi"><b>营销记录</b><strong>3</strong><small>条</small></div>
+  <div class="kpi"><b>实际航段</b><strong>1</strong><small>条</small></div>
+  <div class="kpi"><b>待裁决</b><strong>1</strong><small>组</small></div>
+  <div class="kpi"><b>补偿</b><strong>0</strong><small>进行中</small></div>
+</section>
+<div class="grid grid--split">
+  <section class="panel">
+    <div class="panel__head"><h2>共享航班</h2><span class="state state--ok">按声明识别</span></div>
+    <div class="panel__body panel__body--scroll">
+      <table class="ledger"><thead><tr><th>序号</th><th>业务键</th><th>状态</th><th class="num">值</th></tr></thead>
+      <tbody>{% for row in rows %}<tr><td class="num">{{ loop.index }}</td><td>{{ row.key }}</td><td>{{ row.status }}</td><td class="num">{{ row.value }}</td></tr>{% endfor %}</tbody></table>
+    </div>
+  </section>
+  <section class="panel panel--evidence">
+    <div class="panel__head"><h2>证据</h2><span class="panel__meta">按来源保留</span></div>
+    <div class="panel__body"><div class="evidence"><b>CODESHARE</b><span>OPERATING DECLARATION</span><code>/api/codeshare/import</code></div><pre id="result">等待运行</pre></div>
+  </section>
+  <section class="panel panel--status">
+    <div class="panel__head"><h2>状态分布</h2><span class="panel__meta">读回</span></div>
+    <div class="panel__body"><div class="bar"><i style="width:34%"></i></div><div class="legend"><span>已归并</span><span>待裁决</span></div></div>
+  </section>
+</div>
+{% endblock %}
